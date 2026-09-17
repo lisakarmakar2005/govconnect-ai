@@ -117,7 +117,7 @@ function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
               return (
                 <li key={item.to}>
                   <Link
-                    to={item.to}
+                    to={item.to as never}
                     onClick={onNavigate}
                     className={cn(
                       "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-sidebar-foreground/85 transition-colors hover:bg-white/10 hover:text-sidebar-accent-foreground",
