@@ -22,7 +22,7 @@ export function GlobalSearch() {
   };
 
   return (
-    <CommandDialog open={searchOpen} onOpenChange={setSearchOpen} title="Global search" description="Search problems, startups, proposals and pilots">
+    <CommandDialog open={searchOpen} onOpenChange={setSearchOpen}>
       <CommandInput placeholder="Search problems, startups, proposals, pilots…" />
       <CommandList>
         <CommandEmpty>No matching records in this workspace.</CommandEmpty>
