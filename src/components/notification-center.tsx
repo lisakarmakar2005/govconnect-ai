@@ -61,7 +61,7 @@ export function NotificationCenter() {
             {visible.map((n) => (
               <li key={n.id}>
                 <Link
-                  to={n.href}
+                  to={n.href as never}
                   onClick={() => {
                     markRead(n.id);
                     setOpen(false);

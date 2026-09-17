@@ -18,8 +18,9 @@ export function GlobalSearch() {
 
   const go = (to: string) => {
     setSearchOpen(false);
-    void navigate({ to });
+    void navigate({ to: to as never });
   };
+
 
   return (
     <CommandDialog open={searchOpen} onOpenChange={setSearchOpen}>
