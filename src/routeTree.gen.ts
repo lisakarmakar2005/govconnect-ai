@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GovDashboardRouteImport } from './routes/gov.dashboard'
+import { Route as GovProblemsRouteImport } from './routes/gov.problems'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GovDashboardRoute = GovDashboardRouteImport.update({
+  id: '/gov/dashboard',
+  path: '/gov/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GovProblemsRoute = GovProblemsRouteImport.update({
+  id: '/gov/problems',
+  path: '/gov/problems',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/gov/dashboard': typeof GovDashboardRoute
+  '/gov/problems': typeof GovProblemsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/gov/dashboard': typeof GovDashboardRoute
+  '/gov/problems': typeof GovProblemsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/gov/dashboard': typeof GovDashboardRoute
+  '/gov/problems': typeof GovProblemsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/gov/dashboard' | '/gov/problems'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/gov/dashboard' | '/gov/problems'
+  id: '__root__' | '/' | '/gov/dashboard' | '/gov/problems'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GovDashboardRoute: typeof GovDashboardRoute
+  GovProblemsRoute: typeof GovProblemsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gov/dashboard': {
+      id: '/gov/dashboard'
+      path: '/gov/dashboard'
+      fullPath: '/gov/dashboard'
+      preLoaderRoute: typeof GovDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gov/problems': {
+      id: '/gov/problems'
+      path: '/gov/problems'
+      fullPath: '/gov/problems'
+      preLoaderRoute: typeof GovProblemsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GovDashboardRoute: GovDashboardRoute,
+  GovProblemsRoute: GovProblemsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
