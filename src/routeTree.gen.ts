@@ -10,12 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GovCreateProblemRouteImport } from './routes/gov.create-problem'
 import { Route as GovDashboardRouteImport } from './routes/gov.dashboard'
 import { Route as GovProblemsRouteImport } from './routes/gov.problems'
+import { Route as GovStructuringRouteImport } from './routes/gov.structuring'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GovCreateProblemRoute = GovCreateProblemRouteImport.update({
+  id: '/gov/create-problem',
+  path: '/gov/create-problem',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GovDashboardRoute = GovDashboardRouteImport.update({
@@ -28,35 +35,64 @@ const GovProblemsRoute = GovProblemsRouteImport.update({
   path: '/gov/problems',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GovStructuringRoute = GovStructuringRouteImport.update({
+  id: '/gov/structuring',
+  path: '/gov/structuring',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/gov/create-problem': typeof GovCreateProblemRoute
   '/gov/dashboard': typeof GovDashboardRoute
   '/gov/problems': typeof GovProblemsRoute
+  '/gov/structuring': typeof GovStructuringRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/gov/create-problem': typeof GovCreateProblemRoute
   '/gov/dashboard': typeof GovDashboardRoute
   '/gov/problems': typeof GovProblemsRoute
+  '/gov/structuring': typeof GovStructuringRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/gov/create-problem': typeof GovCreateProblemRoute
   '/gov/dashboard': typeof GovDashboardRoute
   '/gov/problems': typeof GovProblemsRoute
+  '/gov/structuring': typeof GovStructuringRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/gov/dashboard' | '/gov/problems'
+  fullPaths:
+    | '/'
+    | '/gov/create-problem'
+    | '/gov/dashboard'
+    | '/gov/problems'
+    | '/gov/structuring'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/gov/dashboard' | '/gov/problems'
-  id: '__root__' | '/' | '/gov/dashboard' | '/gov/problems'
+  to:
+    | '/'
+    | '/gov/create-problem'
+    | '/gov/dashboard'
+    | '/gov/problems'
+    | '/gov/structuring'
+  id:
+    | '__root__'
+    | '/'
+    | '/gov/create-problem'
+    | '/gov/dashboard'
+    | '/gov/problems'
+    | '/gov/structuring'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GovCreateProblemRoute: typeof GovCreateProblemRoute
   GovDashboardRoute: typeof GovDashboardRoute
   GovProblemsRoute: typeof GovProblemsRoute
+  GovStructuringRoute: typeof GovStructuringRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gov/create-problem': {
+      id: '/gov/create-problem'
+      path: '/gov/create-problem'
+      fullPath: '/gov/create-problem'
+      preLoaderRoute: typeof GovCreateProblemRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gov/dashboard': {
@@ -82,13 +125,22 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GovProblemsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gov/structuring': {
+      id: '/gov/structuring'
+      path: '/gov/structuring'
+      fullPath: '/gov/structuring'
+      preLoaderRoute: typeof GovStructuringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GovCreateProblemRoute: GovCreateProblemRoute,
   GovDashboardRoute: GovDashboardRoute,
   GovProblemsRoute: GovProblemsRoute,
+  GovStructuringRoute: GovStructuringRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
