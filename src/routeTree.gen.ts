@@ -10,14 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GovComplianceRouteImport } from './routes/gov.compliance'
 import { Route as GovCreateProblemRouteImport } from './routes/gov.create-problem'
 import { Route as GovDashboardRouteImport } from './routes/gov.dashboard'
+import { Route as GovMatchingRouteImport } from './routes/gov.matching'
 import { Route as GovProblemsRouteImport } from './routes/gov.problems'
+import { Route as GovProposalDetailRouteImport } from './routes/gov.proposal-detail'
+import { Route as GovProposalsRouteImport } from './routes/gov.proposals'
 import { Route as GovStructuringRouteImport } from './routes/gov.structuring'
+import { Route as GovStartupProfileIdRouteImport } from './routes/gov.startup-profile.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GovComplianceRoute = GovComplianceRouteImport.update({
+  id: '/gov/compliance',
+  path: '/gov/compliance',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GovCreateProblemRoute = GovCreateProblemRouteImport.update({
@@ -30,9 +40,24 @@ const GovDashboardRoute = GovDashboardRouteImport.update({
   path: '/gov/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GovMatchingRoute = GovMatchingRouteImport.update({
+  id: '/gov/matching',
+  path: '/gov/matching',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GovProblemsRoute = GovProblemsRouteImport.update({
   id: '/gov/problems',
   path: '/gov/problems',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GovProposalDetailRoute = GovProposalDetailRouteImport.update({
+  id: '/gov/proposal-detail',
+  path: '/gov/proposal-detail',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GovProposalsRoute = GovProposalsRouteImport.update({
+  id: '/gov/proposals',
+  path: '/gov/proposals',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GovStructuringRoute = GovStructuringRouteImport.update({
@@ -40,59 +65,99 @@ const GovStructuringRoute = GovStructuringRouteImport.update({
   path: '/gov/structuring',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GovStartupProfileIdRoute = GovStartupProfileIdRouteImport.update({
+  id: '/gov/startup-profile/$id',
+  path: '/gov/startup-profile/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/gov/compliance': typeof GovComplianceRoute
   '/gov/create-problem': typeof GovCreateProblemRoute
   '/gov/dashboard': typeof GovDashboardRoute
+  '/gov/matching': typeof GovMatchingRoute
   '/gov/problems': typeof GovProblemsRoute
+  '/gov/proposal-detail': typeof GovProposalDetailRoute
+  '/gov/proposals': typeof GovProposalsRoute
   '/gov/structuring': typeof GovStructuringRoute
+  '/gov/startup-profile/$id': typeof GovStartupProfileIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/gov/compliance': typeof GovComplianceRoute
   '/gov/create-problem': typeof GovCreateProblemRoute
   '/gov/dashboard': typeof GovDashboardRoute
+  '/gov/matching': typeof GovMatchingRoute
   '/gov/problems': typeof GovProblemsRoute
+  '/gov/proposal-detail': typeof GovProposalDetailRoute
+  '/gov/proposals': typeof GovProposalsRoute
   '/gov/structuring': typeof GovStructuringRoute
+  '/gov/startup-profile/$id': typeof GovStartupProfileIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/gov/compliance': typeof GovComplianceRoute
   '/gov/create-problem': typeof GovCreateProblemRoute
   '/gov/dashboard': typeof GovDashboardRoute
+  '/gov/matching': typeof GovMatchingRoute
   '/gov/problems': typeof GovProblemsRoute
+  '/gov/proposal-detail': typeof GovProposalDetailRoute
+  '/gov/proposals': typeof GovProposalsRoute
   '/gov/structuring': typeof GovStructuringRoute
+  '/gov/startup-profile/$id': typeof GovStartupProfileIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/gov/compliance'
     | '/gov/create-problem'
     | '/gov/dashboard'
+    | '/gov/matching'
     | '/gov/problems'
+    | '/gov/proposal-detail'
+    | '/gov/proposals'
     | '/gov/structuring'
+    | '/gov/startup-profile/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/gov/compliance'
     | '/gov/create-problem'
     | '/gov/dashboard'
+    | '/gov/matching'
     | '/gov/problems'
+    | '/gov/proposal-detail'
+    | '/gov/proposals'
     | '/gov/structuring'
+    | '/gov/startup-profile/$id'
   id:
     | '__root__'
     | '/'
+    | '/gov/compliance'
     | '/gov/create-problem'
     | '/gov/dashboard'
+    | '/gov/matching'
     | '/gov/problems'
+    | '/gov/proposal-detail'
+    | '/gov/proposals'
     | '/gov/structuring'
+    | '/gov/startup-profile/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GovComplianceRoute: typeof GovComplianceRoute
   GovCreateProblemRoute: typeof GovCreateProblemRoute
   GovDashboardRoute: typeof GovDashboardRoute
+  GovMatchingRoute: typeof GovMatchingRoute
   GovProblemsRoute: typeof GovProblemsRoute
+  GovProposalDetailRoute: typeof GovProposalDetailRoute
+  GovProposalsRoute: typeof GovProposalsRoute
   GovStructuringRoute: typeof GovStructuringRoute
+  GovStartupProfileIdRoute: typeof GovStartupProfileIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -102,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gov/compliance': {
+      id: '/gov/compliance'
+      path: '/gov/compliance'
+      fullPath: '/gov/compliance'
+      preLoaderRoute: typeof GovComplianceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gov/create-problem': {
@@ -118,11 +190,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GovDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gov/matching': {
+      id: '/gov/matching'
+      path: '/gov/matching'
+      fullPath: '/gov/matching'
+      preLoaderRoute: typeof GovMatchingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gov/problems': {
       id: '/gov/problems'
       path: '/gov/problems'
       fullPath: '/gov/problems'
       preLoaderRoute: typeof GovProblemsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gov/proposal-detail': {
+      id: '/gov/proposal-detail'
+      path: '/gov/proposal-detail'
+      fullPath: '/gov/proposal-detail'
+      preLoaderRoute: typeof GovProposalDetailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gov/proposals': {
+      id: '/gov/proposals'
+      path: '/gov/proposals'
+      fullPath: '/gov/proposals'
+      preLoaderRoute: typeof GovProposalsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gov/structuring': {
@@ -132,15 +225,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GovStructuringRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gov/startup-profile/$id': {
+      id: '/gov/startup-profile/$id'
+      path: '/gov/startup-profile/$id'
+      fullPath: '/gov/startup-profile/$id'
+      preLoaderRoute: typeof GovStartupProfileIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GovComplianceRoute: GovComplianceRoute,
   GovCreateProblemRoute: GovCreateProblemRoute,
   GovDashboardRoute: GovDashboardRoute,
+  GovMatchingRoute: GovMatchingRoute,
   GovProblemsRoute: GovProblemsRoute,
+  GovProposalDetailRoute: GovProposalDetailRoute,
+  GovProposalsRoute: GovProposalsRoute,
   GovStructuringRoute: GovStructuringRoute,
+  GovStartupProfileIdRoute: GovStartupProfileIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
