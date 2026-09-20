@@ -35,7 +35,7 @@ export const Route = createFileRoute("/gov/pilot")({
       { property: "og:description", content: "Milestone timeline, evidence modals and pilot progress at 72%." },
     ],
   }),
-  component: PilotDashboard;
+  component: PilotDashboard,
 });
 
 function statusIcon(status: string) {
